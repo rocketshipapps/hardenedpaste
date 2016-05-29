@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Protected Paste",
+  "version": "1.0.0",
+  "description":
+      "Prevent “pastejacking”, a browser exploit described at https://github.com/dxa4481/Pastejacking.",
+  "icons": {"48": "chrome/images/48.png", "128": "chrome/images/128.png"},
+  "developer": {"name": "Rocketship", "url": "https://rocketshipapps.com/"},
+  "permissions": [
+    "<all_urls>",
+    "alarms",
+    "browsingData",
+    "clipboardWrite",
+    "contextMenus",
+    "cookies",
+    "identity",
+    "notifications",
+    "storage",
+    "tabs",
+    "unlimitedStorage",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": [
+      "chrome/scripts/vendor/port/port.js", "chrome/scripts/background.js"
+    ]
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["chrome/scripts/vendor/port/port.js", "chrome/scripts/content.js"],
+    "run_at": "document_start",
+    "all_frames": true
+  }],
+  "browser_action": {
+    "default_icon": {
+      "19": "chrome/images/locked/19.png", "38": "chrome/images/locked/38.png"
+    },
+    "default_title": "Protected Paste"
+  }
+}

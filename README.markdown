@@ -11,7 +11,8 @@ that prevents the
 To get started:
 
 1. Install
-[Protected Paste for Chrome](https://chrome.google.com/webstore/detail/protected-paste/[extension ID]).
+[Protected Paste for Chrome](https://chrome.google.com/webstore/detail/protected-paste/[extension ID])
+(an Opera port is in review).
 
 2. Verify that installing the extension
 [has patched the exploit](https://security.love/Pastejacking/) (you may have to
