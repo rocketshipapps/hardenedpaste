@@ -1,6 +1,6 @@
-# ![Logo](assets/logo.gif) Protected Paste
+# ![Logo](assets/logo.gif) Hardened Paste
 
-*[Protected Paste](http://protectedpaste.com/) is a browser extension from the
+*[Hardened Paste](http://hardenedpaste.com/) is a browser extension from the
 creator of [Adblock Fast](https://github.com/rocketshipapps/adblockfast),
 [Disconnect](http://techcrunch.com/2010/12/13/former-googler-launches-disconnect-browser-extension-that-disables-third-party-data-tracking/),
 and
@@ -9,13 +9,13 @@ that prevents the
 [“pastejacking” exploit](https://github.com/dxa4481/Pastejacking). Pastejacking
 otherwise allows a malicious webpage to copy arbitrary content to your
 clipboard. The extension mitigates this threat by providing a shim that
-overrides exploitable JavaScript methods. Protected Paste’s toolbar icon
-animates whenever a potential attack is detected and stopped.*
+overrides exploitable JavaScript methods. Hardened Paste’s toolbar icon animates
+whenever a potential attack is detected and stopped.*
 
 To get started:
 
 1. Install
-[Protected Paste for Chrome](https://chrome.google.com/webstore/detail/protected-paste/[extension ID])
+[Hardened Paste for Chrome](https://chrome.google.com/webstore/detail/hardened-paste/[extension ID])
 (an Opera port is in review).
 
 2. Verify that installing the extension
@@ -23,10 +23,10 @@ To get started:
 use your keyboard to copy, pressing **Control-C** with Windows or \*nix or
 **Command-C** with OS X, to trigger an attack).
 
-3. Follow [Protected Paste on Facebook](https://www.facebook.com/protectedpaste)
-or [on Twitter](https://twitter.com/protectedpaste) for app news.
+3. Follow [Hardened Paste on Facebook](https://www.facebook.com/hardenedpaste)
+or [on Twitter](https://twitter.com/hardenedpaste) for app news.
 
-Protected Paste includes the
+Hardened Paste includes the
 [port.js library](https://github.com/oldestlivingboy/port).
 
 **Pull requests are welcome<em>!</em>**
@@ -49,6 +49,6 @@ details.
 
 ## Exceptions
 
-The Protected Paste and Rocketship logos, trademarks, domain names, and other
+The Hardened Paste and Rocketship logos, trademarks, domain names, and other
 brand features used in this program cannot be reused without permission and no
 license is granted thereto.

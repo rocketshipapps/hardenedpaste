@@ -18,31 +18,31 @@
     Brian Kennish <oldestlivingboy@gmail.com>
 */
 var root = document.documentElement;
-var protectedpaste = document.createElement('input');
-protectedpaste.type = 'hidden';
-protectedpaste.name = 'protectedpaste';
+var hardenedpaste = document.createElement('input');
+hardenedpaste.type = 'hidden';
+hardenedpaste.name = 'hardenedpaste';
 
 new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
     if (mutation.attributeName == 'value')
-        chrome.runtime.sendMessage({protectedpaste: true}, function() {
-          protectedpaste.removeAttribute('value');
+        chrome.runtime.sendMessage({hardenedpaste: true}, function() {
+          hardenedpaste.removeAttribute('value');
         });
   });
-}).observe(protectedpaste, {attributes: true});
+}).observe(hardenedpaste, {attributes: true});
 
-(document.body || root).appendChild(protectedpaste);
+(document.body || root).appendChild(hardenedpaste);
 var shim = document.createElement('script');
 shim.textContent =
     'var _addEventListener = EventTarget.prototype.addEventListener; \n\
 var _execCommand = document.execCommand; \n\
-var protectedpaste = document.getElementsByName(\'protectedpaste\')[0]; \n\
+var hardenedpaste = document.getElementsByName(\'hardenedpaste\')[0]; \n\
 \n\
 EventTarget.prototype.addEventListener = \n\
     function(type, listener, useCapture) { \n\
       if (type == \'copy\') \n\
           _addEventListener.call(this, type, function() { \n\
-            protectedpaste.value = true; \n\
+            hardenedpaste.value = true; \n\
           }); \n\
       else _addEventListener.call(this, type, listener, useCapture); \n\
     } \n\
@@ -50,7 +50,7 @@ EventTarget.prototype.addEventListener = \n\
 document.execCommand = function(command, showUI, commandValue) { \n\
   var returnValue; \n\
 \n\
-  if (command == \'copy\') protectedpaste.value = true; \n\
+  if (command == \'copy\') hardenedpaste.value = true; \n\
   else { \n\
     _execCommand.call(document, command, showUI, commandValue); \n\
     returnValue = true; \n\

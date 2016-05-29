@@ -30,7 +30,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   var tab = sender.tab;
   var currentTime = Date.now();
 
-  if (tab && message.protectedpaste && currentTime > previousTime + 1000) {
+  if (tab && message.hardenedpaste && currentTime > previousTime + 1000) {
     previousTime = currentTime;
     var tabId = tab.id;
     chrome.browserAction.setIcon({
