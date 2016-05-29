@@ -17,8 +17,17 @@
 
     Brian Kennish <oldestlivingboy@gmail.com>
 */
+var _addEventListener = EventTarget.prototype.addEventListener;
 var _execCommand = document.execCommand;
 var protectedpaste = document.getElementsByName('protectedpaste')[0];
+
+EventTarget.prototype.addEventListener = function(type, listener, useCapture) {
+  if (type == 'copy')
+      _addEventListener.call(this, type, function() {
+        protectedpaste.value = true;
+      });
+  else _addEventListener.call(this, type, listener, useCapture);
+}
 
 document.execCommand = function(command, showUI, commandValue) {
   var returnValue;
