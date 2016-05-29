@@ -6,10 +6,10 @@ creator of [Adblock Fast](https://github.com/rocketshipapps/adblockfast),
 and
 [Facebook Disconnect](http://techcrunch.com/2010/10/20/google-facebook-disconnec/)
 that prevents the
-[“pastejacking” exploit](https://github.com/dxa4481/Pastejacking), which would
-otherwise allow a malicious webpage to copy arbitrary content to your clipboard.
-The extension mitigates this threat by providing a shim to override exploitable
-JavaScript methods. Protected Paste’s toolbar icon animates whenever a potential
+[“pastejacking” exploit](https://github.com/dxa4481/Pastejacking). Pastejacking
+otherwise allows a malicious webpage to copy arbitrary content to your
+clipboard. The extension mitigates this threat by providing a shim to override
+exploitable JavaScript methods and animates a toolbar icon whenever a potential
 attack is detected and stopped.*
 
 To get started:
