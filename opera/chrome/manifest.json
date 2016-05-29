@@ -23,7 +23,6 @@
     "webRequest",
     "webRequestBlocking"
   ],
-  "web_accessible_resources": ["scripts/shim.js"],
   "background": {
     "scripts": ["scripts/vendor/port/port.js", "scripts/background.js"]
   },
