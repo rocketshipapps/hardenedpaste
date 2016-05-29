@@ -33,5 +33,29 @@ new MutationObserver(function(mutations) {
 
 (document.body || root).appendChild(protectedpaste);
 var shim = document.createElement('script');
-shim.src = chrome.extension.getURL('scripts/shim.js');
+shim.textContent =
+    'var _addEventListener = EventTarget.prototype.addEventListener; \n\
+var _execCommand = document.execCommand; \n\
+var protectedpaste = document.getElementsByName(\'protectedpaste\')[0]; \n\
+\n\
+EventTarget.prototype.addEventListener = \n\
+    function(type, listener, useCapture) { \n\
+      if (type == \'copy\') \n\
+          _addEventListener.call(this, type, function() { \n\
+            protectedpaste.value = true; \n\
+          }); \n\
+      else _addEventListener.call(this, type, listener, useCapture); \n\
+    } \n\
+\n\
+document.execCommand = function(command, showUI, commandValue) { \n\
+  var returnValue; \n\
+\n\
+  if (command == \'copy\') protectedpaste.value = true; \n\
+  else { \n\
+    _execCommand.call(document, command, showUI, commandValue); \n\
+    returnValue = true; \n\
+  } \n\
+\n\
+  return returnValue; \n\
+}';
 (document.head || root).appendChild(shim);
