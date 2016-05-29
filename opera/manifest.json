@@ -6,15 +6,7 @@
       "Prevent “pastejacking”, a browser exploit described at https://github.com/dxa4481/Pastejacking.",
   "icons": {"48": "chrome/images/48.png", "128": "chrome/images/128.png"},
   "developer": {"name": "Rocketship", "url": "https://rocketshipapps.com/"},
-  "permissions": [
-    "<all_urls>",
-    "clipboardWrite",
-    "contextMenus",
-    "notifications",
-    "storage",
-    "tabs",
-    "unlimitedStorage"
-  ],
+  "permissions": ["<all_urls>", "contextMenus", "notifications", "tabs"],
   "background": {
     "scripts": [
       "chrome/scripts/vendor/port/port.js", "chrome/scripts/background.js"

@@ -5,16 +5,7 @@
   "description":
       "Prevent “pastejacking”, a browser exploit described at https://github.com/dxa4481/Pastejacking.",
   "icons": {"48": "images/48.png", "128": "images/128.png"},
-  "permissions": [
-    "<all_urls>",
-    "clipboardWrite",
-    "contextMenus",
-    "gcm",
-    "notifications",
-    "storage",
-    "tabs",
-    "unlimitedStorage"
-  ],
+  "permissions": ["<all_urls>", "contextMenus", "gcm", "notifications", "tabs"],
   "background": {
     "scripts": ["scripts/vendor/port/port.js", "scripts/background.js"]
   },
