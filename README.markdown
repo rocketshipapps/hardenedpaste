@@ -8,9 +8,9 @@ and
 that prevents the
 [“pastejacking” exploit](https://github.com/dxa4481/Pastejacking). Pastejacking
 otherwise allows a malicious webpage to copy arbitrary content to your
-clipboard. The extension mitigates this threat by providing a shim to override
-exploitable JavaScript methods and animates a toolbar icon whenever a potential
-attack is detected and stopped.*
+clipboard. The extension mitigates this threat by providing a shim that
+overrides exploitable JavaScript methods. Protected Paste’s toolbar icon
+animates whenever a potential attack is detected and stopped.*
 
 To get started:
 
