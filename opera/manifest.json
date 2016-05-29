@@ -8,19 +8,12 @@
   "developer": {"name": "Rocketship", "url": "https://rocketshipapps.com/"},
   "permissions": [
     "<all_urls>",
-    "alarms",
-    "browsingData",
     "clipboardWrite",
     "contextMenus",
-    "cookies",
-    "identity",
     "notifications",
     "storage",
     "tabs",
-    "unlimitedStorage",
-    "webNavigation",
-    "webRequest",
-    "webRequestBlocking"
+    "unlimitedStorage"
   ],
   "background": {
     "scripts": [

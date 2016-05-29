@@ -7,21 +7,13 @@
   "icons": {"48": "images/48.png", "128": "images/128.png"},
   "permissions": [
     "<all_urls>",
-    "alarms",
-    "browsingData",
     "clipboardWrite",
     "contextMenus",
-    "cookies",
     "gcm",
-    "identity",
     "notifications",
-    "proxy",
     "storage",
     "tabs",
-    "unlimitedStorage",
-    "webNavigation",
-    "webRequest",
-    "webRequestBlocking"
+    "unlimitedStorage"
   ],
   "background": {
     "scripts": ["scripts/vendor/port/port.js", "scripts/background.js"]
