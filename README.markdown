@@ -7,10 +7,11 @@ and
 [Facebook Disconnect](http://techcrunch.com/2010/10/20/google-facebook-disconnec/)
 that prevents the
 [“pastejacking” exploit](https://github.com/dxa4481/Pastejacking). Pastejacking
-otherwise allows a malicious webpage to copy arbitrary content to your
-clipboard. The extension mitigates this threat by providing a shim that
-overrides exploitable JavaScript methods. Hardened Paste’s toolbar icon animates
-whenever a potential attack is detected and stopped.*
+otherwise allows a [malicious webpage](https://security.love/Pastejacking/)
+(this is a proof of concept) to copy arbitrary content to your clipboard. The
+extension mitigates this threat by providing a shim that overrides exploitable
+JavaScript methods. Hardened Paste’s toolbar icon animates whenever a potential
+attack is detected and stopped.*
 
 To get started:
 
