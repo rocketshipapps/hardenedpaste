@@ -1,4 +1,4 @@
-# ![Logo](assets/logo.png) Protected Paste
+# ![Logo](assets/logo.gif) Protected Paste
 
 *[Protected Paste](http://protectedpaste.com/) is a browser extension from the
 creator of [Adblock Fast](https://github.com/rocketshipapps/adblockfast),
