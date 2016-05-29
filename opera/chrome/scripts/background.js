@@ -18,6 +18,7 @@
     Brian Kennish <oldestlivingboy@gmail.com>
 */
 var currentBuild = 1;
+var previousTime = 0;
 var path = navigator.userAgent.indexOf('OPR') + 1 ? 'chrome/' : '';
 
 if (!localStorage.build) {
@@ -27,8 +28,10 @@ if (!localStorage.build) {
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   var tab = sender.tab;
+  var currentTime = Date.now();
 
-  if (tab && message.protectedpaste) {
+  if (tab && message.protectedpaste && currentTime > previousTime + 1000) {
+    previousTime = currentTime;
     var tabId = tab.id;
     chrome.browserAction.setIcon({
       tabId: tabId,
@@ -44,7 +47,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
           19: path + 'images/locked/19.png', 38: path + 'images/locked/38.png'
         }
       });
-    }, 200);
+    }, 400);
   }
 
   sendResponse({});
