@@ -16,7 +16,7 @@ attack is detected and stopped.*
 To get started:
 
 1. Install
-[Hardened Paste for Chrome](https://chrome.google.com/webstore/detail/hardened-paste/[extension ID])
+[Hardened Paste for Chrome](https://chrome.google.com/webstore/detail/hardened-paste/gielgconhpjjpkkfomnkdnfinilggdmk)
 (an Opera port is in review).
 
 2. Verify that installing the extension
