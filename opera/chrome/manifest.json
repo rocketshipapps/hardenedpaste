@@ -2,8 +2,7 @@
   "manifest_version": 2,
   "name": "Hardened Paste",
   "version": "1.0.0",
-  "description":
-      "Prevent “pastejacking”, a browser exploit described at https://github.com/dxa4481/Pastejacking.",
+  "description": "Prevent the “pastejacking” browser exploit.",
   "icons": {"48": "images/48.png", "128": "images/128.png"},
   "permissions": ["<all_urls>", "contextMenus", "gcm", "notifications", "tabs"],
   "background": {
