@@ -1,10 +1,11 @@
 {
   "manifest_version": 2,
   "name": "Hardened Paste",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Prevent the “pastejacking” browser exploit.",
   "icons": {"48": "images/48.png", "128": "images/128.png"},
   "permissions": ["<all_urls>", "contextMenus", "gcm", "notifications", "tabs"],
+  "web_accessible_resources": ["scripts/shim.js"],
   "background": {
     "scripts": ["scripts/vendor/port/port.js", "scripts/background.js"]
   },

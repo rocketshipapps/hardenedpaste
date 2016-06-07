@@ -18,44 +18,63 @@
     Brian Kennish <oldestlivingboy@gmail.com>
 */
 var root = document.documentElement;
-var hardenedpaste = document.createElement('input');
-hardenedpaste.type = 'hidden';
-hardenedpaste.name = 'hardenedpaste';
+var showIndicator = document.createElement('input');
+var head = document.head || root;
+var inlineShim = document.createElement('script');
+showIndicator.type = 'hidden';
+showIndicator.name = 'hardenedpaste-indicator';
 
 new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
-    if (mutation.attributeName == 'value')
-        chrome.runtime.sendMessage({hardenedpaste: true}, function() {
-          hardenedpaste.removeAttribute('value');
+    mutation.attributeName == 'value' &&
+        chrome.runtime.sendMessage({showIndicator: true}, function() {
+          showIndicator.removeAttribute('value');
         });
   });
-}).observe(hardenedpaste, {attributes: true});
+}).observe(showIndicator, {attributes: true});
 
-(document.body || root).appendChild(hardenedpaste);
-var shim = document.createElement('script');
-shim.textContent =
-    'var _addEventListener = EventTarget.prototype.addEventListener; \n\
-var _execCommand = document.execCommand; \n\
-var hardenedpaste = document.getElementsByName(\'hardenedpaste\')[0]; \n\
+(document.body || root).appendChild(showIndicator);
+inlineShim.textContent =
+    'var inliningAllowed = document.createElement(\'input\');\n\
+var _addEventListener = EventTarget.prototype.addEventListener;\n\
+var showIndicator =\n\
+    document.getElementsByName(\'hardenedpaste-indicator\')[0];\n\
+var _execCommand = document.execCommand;\n\
+inliningAllowed.type = \'hidden\';\n\
+inliningAllowed.name = \'hardenedpaste-inlining\';\n\
+inliningAllowed.value = true;\n\
+(document.body || document.documentElement).appendChild(inliningAllowed);\n\
 \n\
-EventTarget.prototype.addEventListener = \n\
-    function(type, listener, useCapture) { \n\
-      if (type == \'copy\') \n\
-          _addEventListener.call(this, type, function() { \n\
-            hardenedpaste.value = true; \n\
-          }); \n\
-      else _addEventListener.call(this, type, listener, useCapture); \n\
-    } \n\
+EventTarget.prototype.addEventListener =\n\
+    function(type, listener, useCapture) {\n\
+      if (type == \'copy\')\n\
+          _addEventListener.call(this, type, function() {\n\
+            showIndicator.value = true;\n\
+          });\n\
+      else _addEventListener.call(this, type, listener, useCapture);\n\
+    }\n\
 \n\
-document.execCommand = function(command, showUI, commandValue) { \n\
-  var returnValue; \n\
+DataTransfer.prototype.setData = function() { showIndicator.value = true; }\n\
 \n\
-  if (command == \'copy\') hardenedpaste.value = true; \n\
-  else { \n\
-    _execCommand.call(document, command, showUI, commandValue); \n\
-    returnValue = true; \n\
-  } \n\
+document.execCommand = function(command, showUI, commandValue) {\n\
+  var returnValue;\n\
 \n\
-  return returnValue; \n\
+  if (command == \'copy\') showIndicator.value = true;\n\
+  else {\n\
+    _execCommand.call(document, command, showUI, commandValue);\n\
+    returnValue = true;\n\
+  }\n\
+\n\
+  return returnValue;\n\
 }';
-(document.head || root).appendChild(shim);
+head.appendChild(inlineShim);
+
+if (!document.getElementsByName('hardenedpaste-inlining')[0]) {
+  var externalShim = document.createElement('script');
+  externalShim.src =
+      chrome.extension.getURL(
+        (navigator.userAgent.indexOf('OPR') + 1 ? 'chrome/' : '') +
+            'scripts/shim.js'
+      );
+  head.appendChild(externalShim);
+}
