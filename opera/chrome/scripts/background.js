@@ -49,3 +49,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
   sendResponse({});
 });
+
+chrome.browserAction.onClicked.addListener(function() {
+  chrome.tabs.create({url: 'https://github.com/rocketshipapps/hardenedpaste'});
+});
