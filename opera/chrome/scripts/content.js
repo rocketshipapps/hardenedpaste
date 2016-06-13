@@ -36,37 +36,39 @@ new MutationObserver(function(mutations) {
 (document.body || root).appendChild(showIndicator);
 inlineShim.textContent =
     'var inliningAllowed = document.createElement(\'input\');\n\
-var _addEventListener = EventTarget.prototype.addEventListener;\n\
+var _execCommand = HTMLDocument.prototype.execCommand;\n\
 var showIndicator =\n\
     document.getElementsByName(\'hardenedpaste-indicator\')[0];\n\
-var _execCommand = document.execCommand;\n\
+var _addEventListener = EventTarget.prototype.addEventListener;\n\
 inliningAllowed.type = \'hidden\';\n\
 inliningAllowed.name = \'hardenedpaste-inlining\';\n\
 inliningAllowed.value = true;\n\
 (document.body || document.documentElement).appendChild(inliningAllowed);\n\
 \n\
+HTMLDocument.prototype.execCommand =\n\
+    function(command, showUI, commandValue) {\n\
+      var returnValue;\n\
+\n\
+      if (command == \'copy\' || command == \'cut\')\n\
+          showIndicator.value = true;\n\
+      else {\n\
+        _execCommand.call(document, command, showUI, commandValue);\n\
+        returnValue = true;\n\
+      }\n\
+\n\
+      return returnValue;\n\
+    }\n\
+\n\
 EventTarget.prototype.addEventListener =\n\
     function(type, listener, useCapture) {\n\
-      if (type == \'copy\')\n\
+      if (type == \'copy\' || type == \'cut\')\n\
           _addEventListener.call(this, type, function() {\n\
             showIndicator.value = true;\n\
           });\n\
       else _addEventListener.call(this, type, listener, useCapture);\n\
     }\n\
 \n\
-DataTransfer.prototype.setData = function() { showIndicator.value = true; }\n\
-\n\
-document.execCommand = function(command, showUI, commandValue) {\n\
-  var returnValue;\n\
-\n\
-  if (command == \'copy\') showIndicator.value = true;\n\
-  else {\n\
-    _execCommand.call(document, command, showUI, commandValue);\n\
-    returnValue = true;\n\
-  }\n\
-\n\
-  return returnValue;\n\
-}';
+DataTransfer.prototype.setData = function() { showIndicator.value = true; }';
 head.appendChild(inlineShim);
 
 if (!document.getElementsByName('hardenedpaste-inlining')[0]) {

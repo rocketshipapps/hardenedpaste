@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Hardened Paste",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Prevent the “pastejacking” browser exploit.",
   "icons": {"48": "images/48.png", "128": "images/128.png"},
   "permissions": ["<all_urls>", "contextMenus", "gcm", "notifications", "tabs"],

@@ -17,24 +17,14 @@
 
     Brian Kennish <oldestlivingboy@gmail.com>
 */
-var _addEventListener = EventTarget.prototype.addEventListener;
+var _execCommand = HTMLDocument.prototype.execCommand;
 var showIndicator = document.getElementsByName('hardenedpaste-indicator')[0];
-var _execCommand = document.execCommand;
+var _addEventListener = EventTarget.prototype.addEventListener;
 
-EventTarget.prototype.addEventListener = function(type, listener, useCapture) {
-  if (type == 'copy')
-      _addEventListener.call(this, type, function() {
-        showIndicator.value = true;
-      });
-  else _addEventListener.call(this, type, listener, useCapture);
-}
-
-DataTransfer.prototype.setData = function() { showIndicator.value = true; }
-
-document.execCommand = function(command, showUI, commandValue) {
+HTMLDocument.prototype.execCommand = function(command, showUI, commandValue) {
   var returnValue;
 
-  if (command == 'copy') showIndicator.value = true;
+  if (command == 'copy' || command == 'cut') showIndicator.value = true;
   else {
     _execCommand.call(document, command, showUI, commandValue);
     returnValue = true;
@@ -42,3 +32,13 @@ document.execCommand = function(command, showUI, commandValue) {
 
   return returnValue;
 }
+
+EventTarget.prototype.addEventListener = function(type, listener, useCapture) {
+  if (type == 'copy' || type == 'cut')
+      _addEventListener.call(this, type, function() {
+        showIndicator.value = true;
+      });
+  else _addEventListener.call(this, type, listener, useCapture);
+}
+
+DataTransfer.prototype.setData = function() { showIndicator.value = true; }
